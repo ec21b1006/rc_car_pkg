@@ -25,4 +25,7 @@ An architecture to control a RC car with ROS.
 ### PINOUT
 ![alt text](https://www.embedded-robotics.com/wp-content/uploads/2021/05/NodeMCU-ESP8266-v1.0-Pinout-1024x538.png)
 
+## Connection Schematic
+![alt text](https://github.com/ec21b1006/rc_car_pkg/blob/main/assets/schmtic.png)
+
 
