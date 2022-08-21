@@ -5,52 +5,51 @@ const int inputA2 = 2;
 
 void setup()
 {
-pinMode(Enable_A, OUTPUT);
+    pinMode(Enable_A, OUTPUT);
 
-pinMode(inputA1, OUTPUT);
-pinMode(inputA2, OUTPUT);
-
+    pinMode(inputA1, OUTPUT);
+    pinMode(inputA2, OUTPUT);
 }
 void loop()
 {
-//----Enable output A and B------//
-digitalWrite(Enable_A, HIGH);
+    //----Enable output A-----//
+    digitalWrite(Enable_A, HIGH);
 
-//----------Run motors-----------//
-digitalWrite(inputA1, HIGH);
-digitalWrite(inputA2, LOW);
+    //----------Run motor-----------//
+    digitalWrite(inputA1, HIGH);
+    digitalWrite(inputA2, LOW);
 
-delay(3000);
-//-------Disable Motors----------//
-digitalWrite(Enable_A, LOW);
-delay(3000);
-//-------Reverse Motors----------//
-digitalWrite(Enable_A, HIGH);
+    delay(3000);
+    //-------Disable Motor----------//
+    digitalWrite(Enable_A, LOW);
+    delay(3000);
+    //-------Reverse Motor----------//
+    digitalWrite(Enable_A, HIGH);
 
-digitalWrite(inputA1, LOW);
-digitalWrite(inputA2, HIGH);
+    digitalWrite(inputA1, LOW);
+    digitalWrite(inputA2, HIGH);
 
-delay(3000);
-//-------Disable Motors----------//
-digitalWrite(Enable_A, LOW);
+    delay(3000);
+    //-------Disable Motor----------//
+    digitalWrite(Enable_A, LOW);
 
-delay(3000);
-//----------Speed rise----------//
-for(int i = 0; i < 1024; i++)
-{
-analogWrite(Enable_A, i);
+    delay(3000);
+    //----------Speed rise----------//
+    for (int i = 0; i < 1024; i++)
+    {
+        analogWrite(Enable_A, i);
 
-delay(40);
-}
-//----------Speed fall----------//
-for(int j = 1024; j > 0; j--)
-{
-analogWrite(Enable_A, j);
+        delay(40);
+    }
+    //----------Speed fall----------//
+    for (int j = 1024; j > 0; j--)
+    {
+        analogWrite(Enable_A, j);
 
-delay(40);
-}
-//-------Disable Motors----------//
-digitalWrite(Enable_A, LOW);
+        delay(40);
+    }
+    //-------Disable Motor----------//
+    digitalWrite(Enable_A, LOW);
 
-delay(3000);
+    delay(3000);
 }
