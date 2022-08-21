@@ -4,7 +4,7 @@ An architecture to control a RC car with ROS.
 ## Hardware requirements
 - NodeMCU ESP8266-12E
 - USB Type-A to Micro-B Cable
-- L298 - motor driver
+- L298b - motor driver
 - Micro USB cable, 9V battery, bread boards.
 
 ## Software Dependencies
