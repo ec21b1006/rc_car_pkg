@@ -1,17 +1,22 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="carmodel">
 
-<xacro:property name="box_length" value="0.184" />
+<!-- creatin macros so that we don't need assign the values again and again -->
+<xacro:property name="box_length" value="0.184" />  
 <xacro:property name="box_breadth" value="0.08" />
 <xacro:property name="box_height" value="0.044" />
 <xacro:property name="cylinder_length" value="0.012" />
 <xacro:property name="cylinder_radius" value="0.014" />
-<link name="robot_footprint"></link>
+
+<!-- this is the base link of the model where we attached the gazebo pluging -->
+<link name="robot_footprint"></link> 
+
 <joint name="robot_footprint_joint" type="fixed">
 		<origin xyz="0 0 0" rpy="0 0 0" />
 		<parent link="robot_footprint"/>
 		<child link="body_link" />
 	</joint>
+
 <link name="body_link">
 <visual>
 <geometry>
@@ -150,6 +155,7 @@
 </inertial>
 </link>
  
+ <!-- including the pluging file as a macro here -->
 <xacro:include filename="$(find rc_car_pkg)/gazebo/carmodel.gazebo" />
 
 </robot>
