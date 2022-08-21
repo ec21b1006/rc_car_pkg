@@ -1,5 +1,6 @@
 #include "ros/ros.h"
 #include "geometry_msgs/Twist.h"
+#include <iostream>
 
 int main(int argc, char **argv){
     ros::init(argc, argv, "control_car");
@@ -9,7 +10,7 @@ int main(int argc, char **argv){
     geometry_msgs::Twist msg;
     // msg.linear.x=0;
     while(ros::ok()){
-        msg.linear.x=msg.linear.x-0.1;
+        msg.linear.x=1;
         ROS_INFO("Publishing\n");
         control_car_publisher.publish(msg);
         loop_rate.sleep();
