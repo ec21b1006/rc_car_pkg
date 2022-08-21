@@ -17,3 +17,4 @@
   </plugin>
 </gazebo>
 </robot>
+<!-- GAZEBO MODEL PLUGIN that provides a basic controller for skid steering drive robots in Gazebo (Pioneer 3AT for instance) -->

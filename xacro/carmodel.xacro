@@ -150,6 +150,6 @@
 </inertial>
 </link>
  
-<xacro:include filename="$(find rc_car_pkg)/src/gazebo/carmodel.gazebo" />
+<xacro:include filename="$(find rc_car_pkg)/gazebo/carmodel.gazebo" />
 
 </robot>
