@@ -37,9 +37,6 @@ void setup() {
   nh.getHardware()->setConnection(server, serverPort);
   nh.initNode();
   nh.advertise(pub);
-   
- 
-
 }
 
 void loop() {

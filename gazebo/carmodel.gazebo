@@ -1,5 +1,7 @@
-<?xml version="1.0"?>
-<robot>
+<?xml version="1.0"?> 
+<!-- GAZEBO MODEL PLUGIN that provides a basic controller for skid steering drive robots in Gazebo (Pioneer 3AT for instance) -->
+<!-- WARNING- DO NOT ADD ANY COMMENT BEFORE <?xml version> tag -->
+<robot> 
 <gazebo>
   <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
     <updateRate>10.0</updateRate>
@@ -17,4 +19,4 @@
   </plugin>
 </gazebo>
 </robot>
-<!-- GAZEBO MODEL PLUGIN that provides a basic controller for skid steering drive robots in Gazebo (Pioneer 3AT for instance) -->
+
