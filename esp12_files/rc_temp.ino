@@ -6,8 +6,8 @@
 
 #define DEBUG 1
 
-//Set credentials to connect to the Wifi network 
-//Change if required
+// Set credentials to connect to the Wifi network
+// Change if required
 const char *ssid = "sibi";
 const char *password = "12345678";
 
@@ -31,7 +31,7 @@ void setupWiFi()
 ros::NodeHandle nh;
 std_msgs::Int32 msg;
 
-ros::Publisher pub("/sample_signal", &msg); //Publish a sample topic to check the connection, proof of concept
+ros::Publisher pub("/sample_signal", &msg); // Publish a sample topic to check the connection, proof of concept
 
 void setup()
 {
@@ -40,6 +40,7 @@ void setup()
   setupWiFi();
   delay(2000);
 
+  // ROS object constructors
   nh.getHardware()->setConnection(server, serverPort);
   nh.initNode();
   nh.advertise(pub);
@@ -53,7 +54,7 @@ void loop()
   }
   msg.data = 1;
   pub.publish(&msg);
-  //Publish message 
+  // Publish message
   nh.spinOnce();
   delay(200);
 }
