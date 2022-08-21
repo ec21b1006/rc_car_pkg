@@ -12,7 +12,7 @@ An architecture to control a RC car with ROS.
     - For installation of ROS-noetic refer to this wiki ros official page 
     http://wiki.ros.org/noetic/Installation/Ubuntu
 - Arduino IDE & esp8266 libraries 
-    - For downloading Arduino IDE and congiguring with the esp-12e board libraries you can visit this page
+    - For downloading Arduino IDE and configuring with the esp-12e board libraries you can visit this page
     https://www.embedded-robotics.com/programming-esp8266/
     - 
 - xacro installed
