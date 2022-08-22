@@ -31,12 +31,11 @@ An architecture to control a RC car with ROS.
 ![alt text](https://www.embedded-robotics.com/wp-content/uploads/2021/05/NodeMCU-ESP8266-v1.0-Pinout-1024x538.png)
 
 ## Connection Schematic
-<<<<<<< HEAD
+
 ![alt text](https://github.com/ec21b1006/rc_car_pkg/blob/main/assets/schmtic.png)
 
 ## PROGRESS
-Till now we are able to send and receive messages wirelessly to our laptop on which rosmaster is running with wifi module of the esp-12e.(To see the process check the comments in ./esp12_files/rc_temp.ino)
-=======
+
+>Till now we are able to send and receive messages wirelessly to our laptop on which rosmaster is running with wifi module of the esp-12e.(To see the process check the comments in ./esp12_files/rc_temp.ino)
 
 ![alt text](https://github.com/ec21b1006/rc_car_pkg/blob/main/assets/schmtic.png)
->>>>>>> 663c32468fbfebc82e7910209c8263c12e9fd88c
