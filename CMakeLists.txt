@@ -22,7 +22,6 @@ catkin_package(
 
 file(GLOB_RECURSE sources scripts/*.py)
 
-catkin_python_setup()
 
 include_directories(
 # include
