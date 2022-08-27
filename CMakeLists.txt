@@ -19,6 +19,11 @@ catkin_package(
 #  DEPENDS system_lib
 )
 
+
+file(GLOB_RECURSE sources scripts/*.py)
+
+catkin_python_setup()
+
 include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
