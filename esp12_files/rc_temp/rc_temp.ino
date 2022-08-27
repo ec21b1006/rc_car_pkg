@@ -3,6 +3,7 @@
 #include <ESP8266WebServer.h>
 #include <ros.h>
 #include <std_msgs/Int32.h>
+#include <std_msgs/String.h>
 
 #define DEBUG 1
 int ENB = D7;
@@ -42,12 +43,32 @@ void cmd_velCallback( const std_msgs::Int32& msg){
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, HIGH);
   }
+  else if (msg.data == 0){
+  analogWrite(ENB, 0);
+  digitalWrite(IN3, LOW);
+  digitalWrite(IN4, HIGH);
+
+  }
+}
+
+void dir_selectionCallback(const std_msgs::String& msg){
+  if (msg.data=='l'){
+
+  }
+  else if (msg.data == 'r'){
+
+  }
+  else if (msg.data == '\0'){ 
+  
+  }
 }
 
 ros::NodeHandle nh;
 std_msgs::Int32 msg;
 
 ros::Subscriber<std_msgs::Int32> Sub("/cmd_vel", &cmd_velCallback );
+
+ros::Subscriber<std_msgs::String> Sub("/dir_selection", &dir_selectionCallback);
 
 void setup()
 {
