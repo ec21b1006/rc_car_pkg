@@ -37,3 +37,9 @@ An architecture to control a RC car with ROS.
 ## PROGRESS
 
 >Till now we are able to send and receive messages wirelessly to our laptop on which rosmaster is running with wifi module of the esp-12e.(To see the process check the comments in ./esp12_files/rc_temp.ino)
+
+## L298N Motor driver pinout
+
+![alt text](https://components101.com/sites/default/files/component_pin/L298N-Module-Pinout.jpg)
+
+> https://components101.com/modules/l293n-motor-driver-module
