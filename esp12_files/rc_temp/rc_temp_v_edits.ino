@@ -15,8 +15,8 @@ int state = 0;
 // rosrun rosserial_python serial_node.py tcp
 // Set credentials to connect to the Wifi network
 // Change if required
-const char *ssid = "sibi";
-const char *password = "12345678";
+const char *ssid = "sundar";
+const char *password = "Yellove4";
 
 IPAddress server(192, 168, 46, 107); // Set the rosserial socket ROSCORE SERVER IP address
 
