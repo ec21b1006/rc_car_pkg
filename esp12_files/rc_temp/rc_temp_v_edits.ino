@@ -5,10 +5,13 @@
 #include <std_msgs/Int32.h>
 #include <std_msgs/String.h>
 
+#define ENB D8
+#define ENA D7
+#define IN3 D1
+#define IN4 D2
 #define DEBUG 1
-int ENB = D7;
-int IN3 = D1;
-int IN4 = D2;
+
+int state = 0;
 // rosrun rosserial_python serial_node.py tcp
 // Set credentials to connect to the Wifi network
 // Change if required
@@ -32,49 +35,76 @@ void setupWiFi()
   Serial.println(WiFi.localIP());
 }
 
-void cmd_velCallback( const std_msgs::Int32& msg){
-  if (msg.data == 1){
-  analogWrite(ENB, 255);
-  digitalWrite(IN3, HIGH);
-  digitalWrite(IN4, LOW);
-  }
-  else if (msg.data == -1){
-  analogWrite(ENB, 255);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
-  }
-  else if (msg.data == 0){
-  analogWrite(ENB, 0);
-  digitalWrite(IN3, LOW);
-  digitalWrite(IN4, HIGH);
+void cmd_velCallback(const std_msgs::Int32 &msg)
+{
 
+  if (msg.data == 1)
+  {
+    if (state == 0)
+    {
+      state = 1;
+      digitalWrite(IN3, HIGH);
+      digitalWrite(IN4, LOW);
+    }
+    if (state == -1)
+    {
+      state = 0;
+      digitalWrite(IN3, LOW);
+      digitalWrite(IN4, LOW);
+    }
   }
+  else if (msg.data == -1)
+  {
+    if (state == 1)
+    {
+      state = 0;
+      digitalWrite(IN3, LOW);
+      digitalWrite(IN4, LOW);
+    }
+
+    if (state == 0)
+    {
+      state = -1;
+      digitalWrite(IN3, LOW);
+      digitalWrite(IN4, HIGH);
+    }
+  }
+  // else if (msg.data == 0)
+  // {
+
+  //   digitalWrite(IN3, LOW);
+  //   digitalWrite(IN4, HIGH);
+  // }
 }
 
-void dir_selectionCallback(const std_msgs::String& msg){
-  if (msg.data=='l'){
-
+void dir_selectionCallback(const std_msgs::String &msg)
+{
+  if (msg.data == 'l')
+  {
   }
-  else if (msg.data == 'r'){
-
+  else if (msg.data == 'r')
+  {
   }
-  else if (msg.data == '\0'){ 
-  
+  else if (msg.data == '\0')
+  {
   }
 }
 
 ros::NodeHandle nh;
 std_msgs::Int32 msg;
 
-ros::Subscriber<std_msgs::Int32> Sub("/cmd_vel", &cmd_velCallback );
+ros::Subscriber<std_msgs::Int32> Sub("/cmd_vel", &cmd_velCallback);
 
 ros::Subscriber<std_msgs::String> Sub("/dir_selection", &dir_selectionCallback);
 
 void setup()
 {
   pinMode(ENB, OUTPUT);
+  pinMode(ENA, OUTPUT);
+  digitalWrite(ENA, HIGH);
+  digitalWrite(ENB, HIGH);
   pinMode(IN3, OUTPUT);
-  pinMode(IN4, OUTPUT); 
+  pinMode(IN4, OUTPUT);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
   if (DEBUG)
