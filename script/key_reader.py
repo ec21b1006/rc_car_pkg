@@ -38,10 +38,12 @@ if __name__ == '__main__':
 
     try:
         
-        
+        r = rospy.Rate(10)
         key='\0'
         while True:
-            print("key is",key)
+            
+            rc_front_back_pub.publish(0)
+            print("acc published ",0)
             key=readKey(settings)
             
             if key== 'w':
@@ -66,6 +68,8 @@ if __name__ == '__main__':
             
             if key=='p':
                 break
+            
+            r.sleep()
             
         print("controller terminated")
                 
