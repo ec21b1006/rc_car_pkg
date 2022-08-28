@@ -3,13 +3,16 @@
 #include <ESP8266WebServer.h>
 #include <ros.h>
 #include <std_msgs/Int32.h>
-#include <std_msgs/String.h>
+// #include <std_msgs/String.h>
 
 #define ENB D8
 #define ENA D7
 #define IN3 D1
 #define IN4 D2
 #define DEBUG 1
+#define IN1 D3
+#define IN2 D4
+#define ENA D8
 
 int state = 0;
 // rosrun rosserial_python serial_node.py tcp
@@ -18,7 +21,10 @@ int state = 0;
 const char *ssid = "sundar";
 const char *password = "Yellove4";
 
-IPAddress server(192, 168, 46, 107); // Set the rosserial socket ROSCORE SERVER IP address
+// const char *ssid = "sibi";
+// const char *password = "12345678";
+
+IPAddress server(192, 168, 137, 230); // Set the rosserial socket ROSCORE SERVER IP address
 
 const uint16_t serverPort = 11411; // Set the rosserial socket server port
 
@@ -77,36 +83,50 @@ void cmd_velCallback(const std_msgs::Int32 &msg)
   // }
 }
 
-void dir_selectionCallback(const std_msgs::String &msg)
+void dir_selectionCallback(const std_msgs::Int32 &msg1)
 {
-  if (msg.data == 'l')
+  if (msg1.data == 4)
   {
+
+    digitalWrite(IN1, HIGH);
+    digitalWrite(IN2, LOW);
   }
-  else if (msg.data == 'r')
+  else if (msg1.data == 6)
   {
+
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, HIGH);
   }
-  else if (msg.data == '\0')
+  else if (msg1.data == 5)
   {
+
+    digitalWrite(IN1, LOW);
+    digitalWrite(IN2, LOW);
   }
 }
 
 ros::NodeHandle nh;
 std_msgs::Int32 msg;
+std_msgs::Int32 msg1;
 
 ros::Subscriber<std_msgs::Int32> Sub("/cmd_vel", &cmd_velCallback);
 
-ros::Subscriber<std_msgs::String> Sub("/dir_selection", &dir_selectionCallback);
+ros::Subscriber<std_msgs::Int32> Sub1("/dir_selection", &dir_selectionCallback);
 
 void setup()
 {
   pinMode(ENB, OUTPUT);
-  pinMode(ENA, OUTPUT);
-  digitalWrite(ENA, HIGH);
-  digitalWrite(ENB, HIGH);
   pinMode(IN3, OUTPUT);
   pinMode(IN4, OUTPUT);
   digitalWrite(IN3, LOW);
   digitalWrite(IN4, LOW);
+  pinMode(ENA, OUTPUT);
+  pinMode(IN1, OUTPUT);
+  pinMode(IN2, OUTPUT);
+  digitalWrite(IN1, LOW);
+  digitalWrite(IN2, LOW);
+  digitalWrite(ENA, HIGH);
+  digitalWrite(ENB, HIGH);
   if (DEBUG)
     Serial.begin(115200);
   setupWiFi();
@@ -116,6 +136,7 @@ void setup()
   nh.getHardware()->setConnection(server, serverPort);
   nh.initNode();
   nh.subscribe(Sub);
+  nh.subscribe(Sub1);
 }
 
 void loop()
