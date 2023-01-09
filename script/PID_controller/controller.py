@@ -27,7 +27,7 @@ class Controller(PIDController):
         self.target_val = val
     def UpdateOutput(self):
         self.curr_time = clock.time()
-        self.time_diff = self.curr_time-self.prev_time
+        self.time_diff = max(self.curr_time-self.prev_time,0.01)
         self.prev_time = self.curr_time
         self.error = self.target_val - self.curr_val
         if abs(self.error)>=0 and abs(self.error)<=self.acceptable_error:
@@ -39,7 +39,5 @@ class Controller(PIDController):
         self.output = self.p+self.i+self.d
         return self.output
     
-Car = Controller()
-Car.setConst([1,2,3,4])
-print(Car.acceptable_error,Car.kp)
+
 
