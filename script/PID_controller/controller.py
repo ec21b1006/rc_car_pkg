@@ -27,15 +27,17 @@ class Controller(PIDController):
         self.target_val = val
     def UpdateOutput(self):
         self.curr_time = clock.time()
-        self.time_diff = max(self.curr_time-self.prev_time,0.01)
+        self.time_diff = (self.curr_time-self.prev_time)
         self.prev_time = self.curr_time
         self.error = self.target_val - self.curr_val
         if abs(self.error)>=0 and abs(self.error)<=self.acceptable_error:
             self.error=0
         self.p = self.kp*self.error
         self.i = self.ki*self.error*self.time_diff
+        self.i = min(self.i,2500)
         #Limit to range
         self.d = self.kd*self.error/self.time_diff
+        self.d = min(self.d,2500)
         self.output = self.p+self.i+self.d
         return self.output
     
